@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F7F3E8">
+<title>tsuchinoko プロトタイプ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- PC表示のときだけ出るプロトタイプ操作パネル（スマホでは非表示） -->
+<aside class="proto">
+  <h1>tsuchinoko</h1>
+  <p>大根 収穫適期判定アプリのプロトタイプ。右の画面をタップして操作できます。日付は 2026年11月15日 に固定、データはすべて架空です。</p>
+  <h2>画面へ移動</h2>
+  <div class="jump">
+    <button data-act="demoLoading">00 ローディング</button>
+    <button data-go="home">01 マップ（ホーム）</button>
+    <button data-act="demoDetail">02 大根の詳細</button>
+    <button data-go="full">03 全画面マップ</button>
+    <button data-act="demoHarvest">04 収穫記録</button>
+    <button data-act="demoExport">05 収穫データ＋出力</button>
+    <button data-go="calendar">06 カレンダー</button>
+    <button data-go="memo/new">07 記録を追加</button>
+    <button data-go="settings">08 設定</button>
+    <button data-go="bed/4">09 畝の設定</button>
+    <button data-go="font">12 文字の大きさ</button>
+  </div>
+  <h2>表示</h2>
+  <div class="tgl" id="pTheme">
+    <button data-act="dark" data-v="0">ライト</button>
+    <button data-act="dark" data-v="1">ダーク</button>
+  </div>
+  <div class="tgl" id="pBg">
+    <button data-act="bg" data-v="base">生成り</button>
+    <button data-act="bg" data-v="green">緑</button>
+    <button data-act="bg" data-v="black">黒</button>
+  </div>
+  <h2>データ</h2>
+  <div class="tgl"><button data-act="resetNow">デモデータを初期状態に戻す</button></div>
+  <p class="hint">操作した内容はこのブラウザに保存されます。</p>
+</aside>
+
+<!-- アプリ本体 -->
+<div class="phone" id="phone">
+  <div class="sb" aria-hidden="true">
+    <span>9:41</span>
+    <span class="ic">
+      <svg width="17" height="12" viewBox="0 0 17 12"><path d="M8.5 2.2c2.4 0 4.6.9 6.3 2.5l1.1-1.1A10.4 10.4 0 0 0 8.5.7 10.4 10.4 0 0 0 1.1 3.6l1.1 1.1a8.9 8.9 0 0 1 6.3-2.5zm0 3.4c1.5 0 2.9.6 3.9 1.5l1.1-1.1a7 7 0 0 0-10 0l1.1 1.1c1-1 2.4-1.5 3.9-1.5zm0 3.3c.6 0 1.1.2 1.5.6L8.5 11 7 9.5c.4-.4.9-.6 1.5-.6z" fill="currentColor"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x=".7" y=".7" width="21" height="10.6" rx="3" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".9"/><rect x="2.3" y="2.3" width="17.8" height="7.4" rx="1.6" fill="currentColor"/><path d="M23.2 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill="currentColor"/></svg>
+    </span>
+  </div>
+  <main id="screen"></main>
+  <nav class="tabbar" id="tabbar" aria-label="メインメニュー"></nav>
+  <div id="layer"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="loading" id="loading"></div>
+  <div class="home-ind" aria-hidden="true"></div>
+</div>
+
+<!-- 印刷／PDF用（画面には出ない） -->
+<div id="printArea"></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
